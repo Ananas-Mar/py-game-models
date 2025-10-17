@@ -12,18 +12,18 @@ def main() -> None:
         guild_info = player["guild"]
         race, _ = Race.objects.get_or_create(
             name=race_info["name"],
-            defaults={"description": race_info["description"]}
+            defaults={"description": race_info.get(["description"])}
         )
 
         for skill in race_info["skills"]:
             Skill.objects.get_or_create(
                 name=skill["name"],
-                defaults={"bonus": skill["bonus"], "race": race}
+                defaults={"bonus": skill.get("bonus"), "race": race}
             )
 
         guild, _ = Guild.objects.get_or_create(
             name=guild_info["name"],
-            defaults={"description": guild_info["description"]}
+            defaults={"description": guild_info.get("description")}
         )
 
         Player.objects.get_or_create(
